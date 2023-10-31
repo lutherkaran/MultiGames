@@ -1,7 +1,5 @@
 # MultiGames
 
-Project Title: Random Game Console App
-
 Description:
 This GitHub repository contains a C++ console application for playing a variety of simple text-based games. The application offers a selection of games, including a number guessing game, a hangman, and a word guessing game, each implemented as a separate class.
 
