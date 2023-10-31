@@ -1,0 +1,93 @@
+//class Base
+//{
+//
+//public:
+//	std::mutex m, m1, m2;
+//	int x = 0, y = 0, f = 0;
+//
+//	void Run(int x, std::mutex& m, int ThreadID);
+//	void Run2(int y, std::mutex& m, int ThreadID);
+//	inline void DoSomething(int Seconds);
+//	void IncrementXorY(int& XorY, std::mutex& m, const char* desc);
+//	void ConsumeXY();
+//};
+//
+//void Base::Run(int x, std::mutex& m, int ThreadID)
+//{
+//	std::lock_guard<std::mutex> lock(m);
+//	for (int i = 1; i <= x; i++)
+//	{
+//		f++;
+//	}
+//	std::cout << "Thread: " << ThreadID << "Increased the F value to : " << f << std::endl;
+//}
+//void Base::Run2(int y, std::mutex& m, int ThreadID) 
+//{
+//	std::unique_lock<std::mutex> lock(m);
+//}
+//
+//void Base::DoSomething(int Seconds)
+//{
+//	std::this_thread::sleep_for(std::chrono::seconds(Seconds));
+//}
+//
+//void Base::IncrementXorY(int& XorY, std::mutex& m, const char* desc)
+//{
+//	for (int i = 0; i < 5; i++)
+//	{
+//		m.lock();
+//		++XorY;
+//		std::cout << std::endl << desc << ": " << XorY << "\n";
+//		m.unlock();
+//		DoSomething(2);
+//	}
+//}
+//
+//void Base::ConsumeXY()
+//{
+//	int useCount = 5;
+//	int total = 0;
+//
+//	while (1)
+//	{
+//		int lockResult = std::try_lock(m1, m2);
+//		if (lockResult == -1)
+//		{
+//			if (x != 0 && y != 0)
+//			{
+//				--useCount;
+//				total += x + y;
+//				x = 0;
+//				y = 0;
+//				std::cout << "Total: " << total << std::endl;
+//			}
+//			m1.unlock();
+//			m2.unlock();
+//			if (useCount == 0) { break; }
+//		}
+//	}
+//} 
+//
+//
+//int main()
+//{
+//	Base b;
+//
+//	std::thread t4(&Base::Run, &b, 8, std::ref(b.m), 4);
+//	std::thread t5(&Base::Run, &b, 12, std::ref(b.m), 5);
+//
+//	std::thread t(&Base::IncrementXorY, &b, std::ref(b.x), std::ref(b.m1), "X");
+//	std::thread t2(&Base::IncrementXorY, &b, std::ref(b.y), std::ref(b.m2), "Y");
+//	std::thread t3(&Base::ConsumeXY, &b);
+//
+//	if (t4.joinable() && t5.joinable() && t.joinable() && t2.joinable() && t3.joinable())
+//	{
+//		t4.join();
+//		t5.join();
+//		t.join();
+//		t2.join();
+//		t3.join();
+//	}
+//
+//	return 0;
+//}
