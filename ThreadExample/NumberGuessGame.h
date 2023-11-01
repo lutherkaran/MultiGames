@@ -11,6 +11,6 @@ private:
 public:
 	void Instruction() override;
 	void NewGame() override;
-	void InputGame();
+	void InputGame() override;
 	void CheckingNumber();
 };

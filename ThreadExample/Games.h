@@ -17,12 +17,13 @@ public:
 
 	void RestartGame()
 	{
-		std::cout << "\n DO YOU WANT TO PLAY AGAIN? (1/0)\n\n";
+		std::cout << "\nDO YOU WANT TO PLAY AGAIN? (1/0)\n\n";
 
 		std::cin >> GameLoop;
 
 		if (GameLoop == 1)
 		{
+			system("CLS");
 			NewGame();
 		}
 		else
