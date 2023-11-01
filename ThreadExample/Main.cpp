@@ -13,5 +13,6 @@ int main()
 	{
 		GameThread.join();
 	}
+	
 	return 0;
 }

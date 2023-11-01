@@ -1,25 +1,6 @@
 #include <iostream>
 #include "NumberGuessGame.h"
 
-void NumberGuessGame::RestartGame()
-{
-	std::cout << "\n DO YOU WANT TO PLAY AGAIN? (1/0)\n\n";
-	std::cin >> GameLoop;
-
-	if (GameLoop == 1)
-	{
-		NewGame();
-	}
-	else
-	{
-		std::exit(0);
-	}
-}
-
-void NumberGuessGame::ExitGame(int& GameLoop)
-{
-	std::cin >> GameLoop;
-}
 
 void NumberGuessGame::Instruction()
 {
@@ -48,7 +29,7 @@ void NumberGuessGame::NewGame()
 			RestartGame();
 		}
 
-	} while (GameLoop != 0);
+	} while (GetGameLoop() != 0);
 }
 
 void NumberGuessGame::CheckingNumber()
@@ -58,13 +39,14 @@ void NumberGuessGame::CheckingNumber()
 		std::cout << "CONGRATULATIONS: YOU WON THE GAME :)" << std::endl;
 		RestartGame();
 	}
-	else if (Tries > TargetNumber) {
+	else if (Tries > TargetNumber && AttemptsLeft > 0) {
 		std::cout << "TOO HIGH, TRY AGAIN :(" << std::endl;
 	}
-	else {
+	else if (Tries < TargetNumber && AttemptsLeft > 0) {
 		std::cout << "TOO LOW, TRY AGAIN :(" << std::endl;
 	}
 }
+
 void NumberGuessGame::InputGame()
 {
 	std::cin >> Tries;

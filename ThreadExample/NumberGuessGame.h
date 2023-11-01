@@ -13,6 +13,4 @@ public:
 	void NewGame() override;
 	void InputGame();
 	void CheckingNumber();
-	void RestartGame();
-	void ExitGame(int& GameLoop) override;
 };
