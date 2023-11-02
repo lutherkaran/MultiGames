@@ -8,12 +8,20 @@ private:
 	std::vector<std::string> Fruits{ "APPLE", "BANANA", "MANGO", "CHERRY", "BERRY", "TOMATO", "GUAVA", "PEAR", "WATERMELON", "PAPAYA", "KIWI" };
 	std::vector<std::string> message{ "BEST OF LUCK..!!", "BRAVO..!!", "THAT'S CORRECT..!!" ,"WRONG ANSWER..!!","TIME TO DIE BITCH ..l..", "CONGRATULATIONS, YOU WON..!!" };
 
-	unsigned int Lives;
-	char Guess;
-	char HiddenWord;
-	std::string TargetGuess;
+	unsigned int Lives; 
+	char Guess; // Input
+	
+	std::string GuessFruit; // To Guess
+	std::string HiddenFruit;
+	
+	char c; // To track
+	int Index;
+	
+	bool hidden;
+	int DisplayMessageNumber;
 
 public:
+
 	inline std::vector<std::string> GetMessage() {
 		return message;
 	}
@@ -26,7 +34,8 @@ public:
 	virtual void InputGame() override;
 
 	void DrawMan(std::string& message);
-	void HideWord(std::string fruit);
-	void CheckGuess();
+	void HideWord(std::string& fruit);
+	void UnhideWord(char C, char Guess, int Index);
+	void CheckGuess(int& DisplayMessageNumber);
 	void Initializing();
 };

@@ -23,74 +23,94 @@ void HangmanGame::DrawMan(std::string& message)
 
 void HangmanGame::Initializing()
 {
+	srand(time(NULL));
 	Lives = 3;
+	hidden = false;
+	c = '\0';
+	Index = 0;
+	hidden = false;
+	DisplayMessageNumber = 0;
+	int RandomFruitNumber = 0 + (std::rand() % GetTargetFruit().size());
+
 	DrawMan(GetMessage()[0]);
 	Instruction();
-	srand(time(NULL));
-	int random = 0 + (std::rand() % GetTargetFruit().size());
-	TargetGuess = GetTargetFruit()[random];
-	HideWord(TargetGuess);
+
+	HiddenFruit = GetTargetFruit()[RandomFruitNumber];
+	GuessFruit = HiddenFruit;
 }
 
 void HangmanGame::NewGame()
 {
 	Initializing();
-
 	do
 	{
 		if (Lives > 0)
 		{
+			HideWord(HiddenFruit);
 			InputGame();
-			CheckGuess();
-		}
+			CheckGuess(DisplayMessageNumber);
+			system("CLS");
+			DrawMan(GetMessage()[DisplayMessageNumber]);
 
-		if (Lives == 0)
+		}
+		else if (Lives == 0)
 		{
 			system("CLS");
 			DrawMan(GetMessage()[4]);
-			std::cout << "CORRECT ANSWER IS: " << TargetGuess << std::endl;
+			std::cout << "CORRECT ANSWER IS: " << GuessFruit << std::endl;
 			RestartGame();
 		}
 
 	} while (GetGameLoop() != 0);
-	//system("CLS");
 }
 
 void HangmanGame::InputGame()
 {
 	std::cin >> Guess;
-	toupper(Guess);
+	Guess = toupper(Guess);
 }
 
-void HangmanGame::HideWord(std::string fruit)
+void HangmanGame::HideWord(std::string& fruit)
 {
-	std::string hidden = fruit;
-
-	for (int i = 0; i < hidden.length(); i++)
+	if (!hidden)
 	{
-		hidden[i] = 'X';
+		for (int i = 0; i < fruit.length(); i++)
+		{
+			fruit[i] = 'X';
+		}
+		hidden = true;
 	}
-
-	std::cout << "FRUIT TO GUESS: " << hidden << std::endl;
+	std::cout << "FRUIT TO GUESS: " << fruit << std::endl;
 }
 
-void HangmanGame::CheckGuess()
+void HangmanGame::UnhideWord(char C, char Guess, int Index)
 {
-	for (int i = 0; i < TargetGuess.length(); i++)
+	if (hidden)
 	{
-		if (Guess == TargetGuess[i])
+		if (Guess == c)
+		{
+			HiddenFruit[Index] = c;
+		}
+	}
+}
+
+void HangmanGame::CheckGuess(int& DisplayMessageNumber)
+{
+	for (int i = 0; i < GuessFruit.length(); i++)
+	{
+		if (Guess == GuessFruit[i])
 		{
 			srand(time(NULL));
-			//int random = 1 + (std::rand() % 2);
-			//system("CLS");
-			DrawMan(GetMessage()[2]);
-		}
-		else
-		{
-			Lives--;
-			system("CLS");
-			DrawMan(GetMessage()[3]);
+			c = GuessFruit[i];
+			Index = i;
+			UnhideWord(c, Guess, i);
+			DisplayMessageNumber = 1 + (std::rand() % 2);
 			break;
 		}
+	}
+	if (Guess != c)
+	{
+		Lives--;
+		DisplayMessageNumber = 3;
 	}
 }
