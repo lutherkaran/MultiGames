@@ -10,7 +10,9 @@ private:
 public:
 	void DisplayGamesList();
 	void SelectGameToPlay();
+
 	void StartWordGuessGame();
 	void StartNumberGuessGame();
 	void StartMillionaireGame();
+	void StartHangmanGame();
 };

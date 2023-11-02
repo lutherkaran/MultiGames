@@ -77,6 +77,7 @@ void MillionaireGame::NewGame()
 			{
 				std::cout << "\t" << ++j << ") " << b << std::endl;
 			}
+
 			InputGame();
 			if (Ans != a.first)
 			{

@@ -3,7 +3,7 @@
 
 void WordGuessGame::Instruction()
 {
-	std::cout << "\t\t\tWELCOME TO THE WORD-GUESS GAME ENTER A WORD FROM THE LIST BELOW TO GUESS IN" << AttemptsLeft << " TRIES ONLY" << std::endl;
+	std::cout << "\t\t\tWELCOME TO THE WORD-GUESS GAME ENTER A WORD FROM THE LIST BELOW TO GUESS IN " << AttemptsLeft << " TRIES ONLY" << std::endl;
 }
 
 std::vector<std::string> WordGuessGame::DisplayWordList()
@@ -20,8 +20,10 @@ void WordGuessGame::NewGame()
 {
 	system("CLS");
 	AttemptsLeft = 5;
+
 	Instruction();
 	DisplayWordList();
+	srand(time(NULL));
 	unsigned int TargetNumber = 0 + (std::rand() % WordList.size());
 	TargetWord = WordList[TargetNumber];
 

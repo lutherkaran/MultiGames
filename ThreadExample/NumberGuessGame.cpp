@@ -11,6 +11,7 @@ void NumberGuessGame::NewGame()
 {
 	system("CLS");
 	AttemptsLeft = 5;
+	srand(time(NULL));
 	TargetNumber = 1 + (std::rand() % 10);
 	Instruction();
 
