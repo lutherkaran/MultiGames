@@ -1,4 +1,5 @@
 ﻿  HangmanGame.cpp
-C:\Users\karan\Documents\Unreal Projects\MultiGames\ThreadExample\HangmanGame.cpp(26,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\karan\Documents\Unreal Projects\MultiGames\ThreadExample\HangmanGame.cpp(104,14): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\karan\Documents\Unreal Projects\MultiGames\ThreadExample\HangmanGame.cpp(42,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\karan\Documents\Unreal Projects\MultiGames\ThreadExample\HangmanGame.cpp(54,30): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\karan\Documents\Unreal Projects\MultiGames\ThreadExample\HangmanGame.cpp(139,14): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   ThreadExample.vcxproj -> C:\Users\karan\Documents\Unreal Projects\MultiGames\x64\Debug\ThreadExample.exe
